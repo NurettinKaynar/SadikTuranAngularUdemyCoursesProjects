@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <h3 class="bg-primary text-white p-3">{{ getName() }}' todo list</h3>
+      <div class="input-group mb-3">
+        <!-- <input #inputTodo type="text" class="form-control" name="" id="" /> -->
+        <input
+          #inputTodo
+          [(ngModel)]="inputText"
+          type="text"
+          class="form-control"
+          name=""
+          id=""
+          (keyup.enter)="addItem()"
+        />
+        <!-- <input
+          #inputTodo
+          type="text"
+          class="form-control"
+          name=""
+          id=""
+          (keyup.enter)="addItem(inputTodo.value)"
+          (blur)="addItem(inputTodo.value)"
+        /> -->
+        <!-- 1.ci yöntem -->
+        <!-- <button
+          type="submit"
+          class="btn"
+          (click)="addItem()"
+          [class]="{
+            disabled: inputText.length === 0,
+            'btn-secondary': inputText.length === 0,
+            'btn-primary': inputText.length !== 0
+          }"
+        >
+          Ekle
+        </button> -->
+        <!-- 2. yöntem -->
+        <button
+          type="submit"
+          class="btn"
+          (click)="addItem()"
+          [class]="getBtnClasses()"
+        >
+          Ekle
+        </button>
+      </div>
+      <div class="form-check mb-3">
+        <input
+          [(ngModel)]="displayAll"
+          type="checkbox"
+          class="form-check-input pr-2"
+          name=""
+          id="displayAll"
+        />
+        <label for="displayAll" class="form-check-label">Hepsini Göster</label>
+      </div>
+      <div class="my-2">{{ displayCount() }} görev tamamlandı</div>
+      <div
+        class="alert alert-warning"
+        *ngIf="getItems().length == 0; else itemsTable"
+      >
+        Tüm Görevler Tamamlandı
+      </div>
+      <ng-template #itemsTable>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Description</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 1.ci yöntem -->
+            <!-- <tr
+              *ngFor="let items of getItems(); let i = index"
+              [class.bg-primary]="items.action"
+              [class.bg-warning]="!items.action"
+            > -->
+            <!-- 2. yöntem -->
+            <tr
+              *ngFor="let items of getItems(); let i = index"
+              [class]="{
+                'bg-primary': items.action,
+                'bg-warning': !items.action
+              }"
+            >
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ items.description }}</td>
+              <td>
+                <!-- if bloğu -->
+
+                <!-- <div *ngIf="items.action">Yes</div>
+                <div *ngIf="!items.action">No</div> -->
+                <!-- switch bloğu -->
+
+                <!-- <div [ngSwitch]="items.action">
+                  <div *ngSwitchCase="true">Yes</div>
+                  <div *ngSwitchCase="false">No</div>
+                  <div *ngSwitchDefault>Belirtilmedi</div>
+                </div> -->
+
+                <!-- if then bloğu -->
+                <!-- <div *ngIf="!items.action; then noTemplate">
+                  Burası gösterilmez Yer tutucu
+                </div>
+                <ng-template #noTemplate> No </ng-template> -->
+
+                <!-- if then else bloğu -->
+                <div *ngIf="!items.action; then noTemplate; else yesTemplate">
+                  Burası gösterilmez Yer tutucu
+                </div>
+                <ng-template #noTemplate> No </ng-template>
+                <ng-template #yesTemplate> Yes </ng-template>
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  [(ngModel)]="items.action"
+                  name="itemCheckbox"
+                  id="itemCheckbox"
+                  (change)="onActionChange(items)"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+
+      <!-- <div>
+        <p *ngFor="let item of items">
+          {{ item.description }}
+        </p>
+      </div> -->
+    </div>
+  </div>
+</div>
