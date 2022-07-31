@@ -1,26 +1,9 @@
 <div class="list-group">
   <a
-    href="#"
-    rel="noopener noreferrer"
-    class="list-group-item list-group-item-action active"
-    >Macera</a
-  >
-  <a
+    *ngFor="let item of categories"
     href="#"
     rel="noopener noreferrer"
     class="list-group-item list-group-item-action"
-    >Bilim Kurgu</a
-  >
-  <a
-    href="#"
-    rel="noopener noreferrer"
-    class="list-group-item list-group-item-action"
-    >Fantastik</a
-  >
-  <a
-    href="#"
-    rel="noopener noreferrer"
-    class="list-group-item list-group-item-action"
-    >Animasyon</a
+    >{{ item.category }}</a
   >
 </div>
