@@ -12,14 +12,25 @@ export class MoviesComponent implements OnInit {
   movies: Movie[];
   title: string = 'Film Listesi';
   movieRepository: MovieRepository;
-  popularMovies: Movie[];
+  filteredMovies: Movie[];
+  // popularMovies: Movie[];
   // today = new Date();
   filterText: string = '';
 
   constructor() {
     this.movieRepository = new MovieRepository();
     this.movies = this.movieRepository.getMovies();
-    this.popularMovies = this.movieRepository.getPopularMovies();
+    // this.popularMovies = this.movieRepository.getPopularMovies();
+    this.filteredMovies = this.movies;
+  }
+  onInputChange() {
+    this.filteredMovies = this.filterText
+      ? this.movies.filter(
+          (m) =>
+            m.title.indexOf(this.filterText) !== -1 ||
+            m.description.indexOf(this.filterText) !== -1
+        )
+      : this.movies;
   }
 
   ngOnInit(): void {}
