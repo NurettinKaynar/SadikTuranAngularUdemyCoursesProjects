@@ -1,9 +1,19 @@
 <div class="list-group">
   <a
+    href="#"
+    rel="noopener noreferrer"
+    [class.active]="displayAll"
+    class="list-group-item list-group-item-action"
+    (click)="selectCategory()"
+    >Tüm Kategoriler</a
+  >
+  <a
     *ngFor="let item of categories"
     href="#"
     rel="noopener noreferrer"
     class="list-group-item list-group-item-action"
+    [class.active]="!displayAll && selectedCategory.id == item.id"
+    (click)="selectCategory(item)"
     >{{ item.category }}</a
   >
 </div>

@@ -45,9 +45,18 @@
             {{ item.description | summary: 50 }}
           </p>
           <p class="card-text">{{ item.publishedDate | date: "dd/MM/y" }}</p>
-          <button type="submit" class="btn btn-sm btn-outline-primary">
-            Detaylar
-          </button>
+          <div>
+            <button type="submit" class="btn btn-sm btn-outline-primary">
+              Detaylar
+            </button>
+            <button
+              (click)="addToList($event, item)"
+              type="submit"
+              class="ms-1 btn btn-sm btn-primary"
+            >
+              Listeye Ekle
+            </button>
+          </div>
         </div>
       </div>
     </div>
