@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Categories } from 'src/models/categories.model';
-import { CategoryRepository } from 'src/models/category.repository';
+import { CategoryService } from '../services/category.service';
+// import { CategoryRepository } from 'src/models/category.repository';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css'],
+  providers: [CategoryService],
 })
 export class CategoryComponent implements OnInit {
   // categories = ['Macera', 'Bilim Kurgu', 'Fantastik', 'Animasyon'];
   categories: Categories[] = [];
-  categoryRepository: CategoryRepository;
+  // categoryRepository: CategoryRepository;
   selectedCategory: Categories = null;
   displayAll: boolean = true;
-  constructor() {
-    this.categoryRepository = new CategoryRepository();
-    this.categories = this.categoryRepository.getCategories();
+  constructor(private categoryService: CategoryService) {
+    // this.categoryRepository = new CategoryRepository();
+    // this.categories = this.categoryRepository.getCategories();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categoryService.getCategories().subscribe((data) => {
+      this.categories = data;
+    });
+  }
 
   selectCategory(category?: Categories) {
     if (category) {

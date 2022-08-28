@@ -14,6 +14,6 @@
     class="list-group-item list-group-item-action"
     [class.active]="!displayAll && selectedCategory.id == item.id"
     (click)="selectCategory(item)"
-    >{{ item.category }}</a
+    >{{ item.category | titlecase }}</a
   >
 </div>

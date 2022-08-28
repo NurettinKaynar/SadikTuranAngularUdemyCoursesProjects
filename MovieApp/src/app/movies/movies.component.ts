@@ -1,13 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/models/movie.model';
-import { MovieRepository } from 'src/models/movie.repository';
+// import { MovieRepository } from 'src/models/movie.repository';
 import { AlertifyService } from '../services/alertify.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.css'],
+  providers: [MovieService],
 })
 export class MoviesComponent implements OnInit {
   // movies = ['Film 1', 'Film 2', 'Film 3'];
@@ -19,7 +21,10 @@ export class MoviesComponent implements OnInit {
   // today = new Date();
   filterText: string = '';
 
-  constructor(private alertify: AlertifyService, private http: HttpClient) {
+  constructor(
+    private alertify: AlertifyService, // private http: HttpClient,
+    private movieService: MovieService
+  ) {
     // this.movieRepository = new MovieRepository();
     // this.movies = this.movieRepository.getMovies();
     // this.popularMovies = this.movieRepository.getPopularMovies();
@@ -52,11 +57,15 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<Movie[]>('http://localhost:3000/movies').subscribe({
-      next: (res) => {
-        this.movies = res;
-        this.filteredMovies = this.movies;
-      },
+    // this.http.get<Movie[]>('http://localhost:3000/movies').subscribe({
+    //   next: (res) => {
+    //     this.movies = res;
+    //     this.filteredMovies = this.movies;
+    //   },
+    // });
+    this.movieService.getMovies().subscribe((res) => {
+      this.movies = res;
+      this.filteredMovies = this.movies;
     });
   }
 }
