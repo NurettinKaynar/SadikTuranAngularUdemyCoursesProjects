@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/models/movie.model';
 import { MovieRepository } from 'src/models/movie.repository';
@@ -10,17 +11,17 @@ import { AlertifyService } from '../services/alertify.service';
 })
 export class MoviesComponent implements OnInit {
   // movies = ['Film 1', 'Film 2', 'Film 3'];
-  movies: Movie[];
+  movies: Movie[] = [];
   title: string = 'Film Listesi';
-  movieRepository: MovieRepository;
-  filteredMovies: Movie[];
+  // movieRepository: MovieRepository;
+  filteredMovies: Movie[] = [];
   // popularMovies: Movie[];
   // today = new Date();
   filterText: string = '';
 
-  constructor(private alertify: AlertifyService) {
-    this.movieRepository = new MovieRepository();
-    this.movies = this.movieRepository.getMovies();
+  constructor(private alertify: AlertifyService, private http: HttpClient) {
+    // this.movieRepository = new MovieRepository();
+    // this.movies = this.movieRepository.getMovies();
     // this.popularMovies = this.movieRepository.getPopularMovies();
     this.filteredMovies = this.movies;
   }
@@ -50,5 +51,12 @@ export class MoviesComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.get<Movie[]>('http://localhost:3000/movies').subscribe({
+      next: (res) => {
+        this.movies = res;
+        this.filteredMovies = this.movies;
+      },
+    });
+  }
 }

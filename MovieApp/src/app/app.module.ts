@@ -12,7 +12,10 @@ import { SummaryPipe } from './pipes/summaryPipe/summary.pipe';
 import { FormsModule } from '@angular/forms';
 import { MovieFilterPipe } from './pipes/movieFilterPipe/movie-filter.pipe';
 import { AlertifyService } from './services/alertify.service';
+import { Injectable } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
+@Injectable({ providedIn: 'root' })
 @NgModule({
   declarations: [
     //component
@@ -30,6 +33,7 @@ import { AlertifyService } from './services/alertify.service';
     //Module
     BrowserModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [AlertifyService], //services
   bootstrap: [AppComponent], // Starter Component
