@@ -20,6 +20,7 @@ export class MoviesComponent implements OnInit {
   // popularMovies: Movie[];
   // today = new Date();
   filterText: string = '';
+  err: any;
 
   constructor(
     private alertify: AlertifyService, // private http: HttpClient,
@@ -63,9 +64,15 @@ export class MoviesComponent implements OnInit {
     //     this.filteredMovies = this.movies;
     //   },
     // });
-    this.movieService.getMovies().subscribe((res) => {
-      this.movies = res;
-      this.filteredMovies = this.movies;
-    });
+    this.movieService.getMovies().subscribe(
+      (res) => {
+        this.movies = res;
+        this.filteredMovies = this.movies;
+      },
+      (error) => {
+        this.err = error;
+        console.log(error);
+      }
+    );
   }
 }
