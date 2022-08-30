@@ -1,5 +1,6 @@
 // import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from 'src/models/movie.model';
 // import { MovieRepository } from 'src/models/movie.repository';
 import { AlertifyService } from '../services/alertify.service';
@@ -24,7 +25,8 @@ export class MoviesComponent implements OnInit {
 
   constructor(
     private alertify: AlertifyService, // private http: HttpClient,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private activatedRoute: ActivatedRoute
   ) {
     // this.movieRepository = new MovieRepository();
     // this.movies = this.movieRepository.getMovies();
@@ -64,15 +66,17 @@ export class MoviesComponent implements OnInit {
     //     this.filteredMovies = this.movies;
     //   },
     // });
-    this.movieService.getMovies().subscribe(
-      (res) => {
-        this.movies = res;
-        this.filteredMovies = this.movies;
-      },
-      (error) => {
-        this.err = error;
-        console.log(error);
-      }
-    );
+    this.activatedRoute.params.subscribe((params) => {
+      this.movieService.getMovies(params['categoryId']).subscribe({
+        next: (res) => {
+          this.movies = res;
+          this.filteredMovies = this.movies;
+        },
+        error: (error) => {
+          this.err = error;
+          console.log(error);
+        },
+      });
+    });
   }
 }

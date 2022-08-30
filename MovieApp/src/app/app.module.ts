@@ -14,6 +14,7 @@ import { MovieFilterPipe } from './pipes/movieFilterPipe/movie-filter.pipe';
 import { AlertifyService } from './services/alertify.service';
 import { Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @Injectable({ providedIn: 'root' })
 @NgModule({
@@ -34,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [AlertifyService], //services
   bootstrap: [AppComponent], // Starter Component

@@ -1,6 +1,6 @@
 <div class="list-group">
   <a
-    href="#"
+    [routerLink]="['/movies']"
     rel="noopener noreferrer"
     [class.active]="displayAll"
     class="list-group-item list-group-item-action"
@@ -9,7 +9,7 @@
   >
   <a
     *ngFor="let item of categories"
-    href="#"
+    routerLink="/movies/category/{{ item.id }}"
     rel="noopener noreferrer"
     class="list-group-item list-group-item-action"
     [class.active]="!displayAll && selectedCategory.id == item.id"

@@ -50,9 +50,12 @@
           </p>
           <p class="card-text">{{ item.publishedDate | date: "dd/MM/y" }}</p>
           <div>
-            <button type="submit" class="btn btn-sm btn-outline-primary">
+            <a
+              routerLink="/movies/{{ item.id }}"
+              class="btn btn-sm btn-outline-primary"
+            >
               Detaylar
-            </button>
+            </a>
             <button
               (click)="addToList($event, item)"
               type="submit"
