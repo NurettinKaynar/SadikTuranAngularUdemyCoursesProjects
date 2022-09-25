@@ -1,0 +1,45 @@
+<h1>Create Movie</h1>
+
+<form [formGroup]="createMovieForm">
+  <div class="mb-3">
+    <label class="form-label" for="title">Title</label>
+    <input
+      formControlName="title"
+      class="form-control"
+      type="text"
+      name=""
+      id="title"
+    />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="description">Description</label>
+    <textarea
+      formControlName="description"
+      class="form-control"
+      type="textarea"
+      name=""
+      id="description"
+    ></textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="image-url">İmage URL</label>
+    <input
+      formControlName="imageUrl"
+      class="form-control"
+      type="url"
+      name="image-url"
+      id="image-url"
+    />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="categoryId">Category</label>
+    <select formControlName="category" class="form-select" name="" id="">
+      <option *ngFor="let item of categories" [value]="item.id">
+        {{ item.category }}
+      </option>
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit" (click)="createMovie()">
+    Create
+  </button>
+</form>

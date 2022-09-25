@@ -37,10 +37,25 @@
     }
   ],
   "categories": [
-    { "id": 1, "category": "Macera" },
-    { "id": 2, "category": "Romantik" },
-    { "id": 3, "category": "Komedi" },
-    { "id": 4, "category": "Dram" },
-    { "id": 5, "category": "Savaş" }
+    {
+      "id": 1,
+      "category": "Macera"
+    },
+    {
+      "id": 2,
+      "category": "Romantik"
+    },
+    {
+      "id": 3,
+      "category": "Komedi"
+    },
+    {
+      "id": 4,
+      "category": "Dram"
+    },
+    {
+      "id": 5,
+      "category": "Savaş"
+    }
   ]
 }

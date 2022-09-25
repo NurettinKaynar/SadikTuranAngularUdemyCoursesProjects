@@ -9,12 +9,13 @@ import { MovieComponent } from './movies/movie/movie.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { FooterComponent } from './footer/footer.component';
 import { SummaryPipe } from './pipes/summaryPipe/summary.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieFilterPipe } from './pipes/movieFilterPipe/movie-filter.pipe';
 import { AlertifyService } from './services/alertify.service';
 import { Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { MovieCreateComponent } from './movie-create/movie-create.component';
 
 @Injectable({ providedIn: 'root' })
 @NgModule({
@@ -29,11 +30,13 @@ import { AppRoutingModule } from './app-routing.module';
     FooterComponent,
     SummaryPipe,
     MovieFilterPipe,
+    MovieCreateComponent,
   ],
   imports: [
     //Module
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
   ],
