@@ -67,8 +67,16 @@
     [disabled]="createMovieForm.invalid"
     class="btn btn-primary"
     type="submit"
-    (click)="createMovie()"
   >
     Create
+  </button>
+
+  <button
+    [disabled]="createMovieForm.invalid"
+    class="btn btn-danger"
+    type="button"
+    (click)="clearForms()"
+  >
+    Clear
   </button>
 </form>

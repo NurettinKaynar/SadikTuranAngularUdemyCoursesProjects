@@ -51,4 +51,8 @@ export class MovieCreateComponent implements OnInit {
       console.log(data);
     });
   }
+
+  clearForms() {
+    this.createMovieForm.reset();
+  }
 }
