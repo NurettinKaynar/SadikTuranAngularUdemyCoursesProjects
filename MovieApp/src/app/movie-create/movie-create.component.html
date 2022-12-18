@@ -1,14 +1,14 @@
 <h1>Create Movie</h1>
 
-<form [formGroup]="createMovieForm">
+<form [formGroup]="createMovieForm" (ngSubmit)="createMovie()">
   <div class="mb-3">
     <label class="form-label" for="title">Title</label>
     <input
       formControlName="title"
       class="form-control"
       type="text"
-      name=""
-      id="title"
+      name="title"
+      id="title-id"
     />
   </div>
   <div class="mb-3">
@@ -17,8 +17,8 @@
       formControlName="description"
       class="form-control"
       type="textarea"
-      name=""
-      id="description"
+      name="description"
+      id="description-id"
     ></textarea>
   </div>
   <div class="mb-3">
@@ -28,7 +28,7 @@
       class="form-control"
       type="url"
       name="image-url"
-      id="image-url"
+      id="image-url-id"
     />
   </div>
   <div class="mb-3">
