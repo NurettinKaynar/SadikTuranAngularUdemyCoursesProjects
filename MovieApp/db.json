@@ -34,6 +34,22 @@
       "description": "Başarılı bir iş adamı olan Michael Kingley, artık emeklilik hayatını yaşamaya başlar. Kingley, geçmişinden açıklayamadığı görüntüler görmeye başladığında, unutulmuş çocukluğunu hatırlamak zorunda kalır.",
       "imageUrl": "5.jpeg",
       "categoryId": 4
+    },
+    {
+      "title": "avatar 2",
+      "description": "avatar 2 yeni çıktı",
+      "imageUrl": "2.jpeg",
+      "category": "5",
+      "publishedDate": "2022-12-18T11:10:53.326Z",
+      "id": 6
+    },
+    {
+      "title": "avatar 2",
+      "description": "avatar 2 yeni çıktı",
+      "imageUrl": "2.jpeg",
+      "category": "5",
+      "publishedDate": "2022-12-18T11:10:53.328Z",
+      "id": 7
     }
   ],
   "categories": [
