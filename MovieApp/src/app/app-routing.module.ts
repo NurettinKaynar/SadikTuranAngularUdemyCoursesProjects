@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 import { MovieCreateComponent } from './movies/movie-create/movie-create.component';
+import { CreateCategoriesComponent } from './categories/create-categories/create-categories.component';
 
 const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'movies/category/:categoryId', component: MoviesComponent },
   { path: 'movies/create', component: MovieCreateComponent },
   { path: 'movies/:movieId', component: MovieDetailsComponent },
+  { path: 'categories/create', component: CreateCategoriesComponent },
 ];
 
 @NgModule({

@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, delay, map, Observable, tap, throwError } from 'rxjs';
 import { Movie } from 'src/models/movie.model';
 import { UrlPathUtilities } from '../utilities/url-path';
 
@@ -29,8 +29,8 @@ export class MovieService {
           }
           return movies;
         }),
-        tap((data) => console.log(data)),
-        catchError(this.handleError)
+        catchError(this.handleError),
+        delay(1000)
       );
   }
   private handleError(error: HttpErrorResponse) {
@@ -68,7 +68,8 @@ export class MovieService {
       )
       .pipe(
         tap((data) => console.log(data)),
-        catchError(this.handleError)
+        catchError(this.handleError),
+        delay(1000)
       );
   }
   createMovie(movie: Movie): Observable<Movie> {
@@ -87,7 +88,8 @@ export class MovieService {
       )
       .pipe(
         tap((data) => console.log(data)),
-        catchError(this.handleError)
+        catchError(this.handleError),
+        delay(1000)
       );
   }
 }

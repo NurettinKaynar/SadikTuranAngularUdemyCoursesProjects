@@ -39,7 +39,7 @@ export class MovieCreateComponent implements OnInit {
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       imageUrl: new FormControl('', Validators.required),
-      category: new FormControl(1, Validators.required),
+      categoryId: new FormControl('', Validators.required),
     });
   }
 

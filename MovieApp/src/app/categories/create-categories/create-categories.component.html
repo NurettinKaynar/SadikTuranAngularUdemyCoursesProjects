@@ -1,1 +1,12 @@
-<p>create-categories works!</p>
+<h1>Kategori Oluştur</h1>
+
+<form [formGroup]="categoryForm" (ngSubmit)="createCategory()" #form="ngForm">
+  <div class="d-flex flex-column gap-3">
+    <label for="name" class="form-label">Adı</label>
+    <input formControlName="category" type="text" class="form-control" />
+    <div class="d-flex gap-3">
+      <button class="btn btn-primary" type="submit">Oluştur</button>
+      <button class="btn btn-danger" type="clear">Temizle</button>
+    </div>
+  </div>
+</form>

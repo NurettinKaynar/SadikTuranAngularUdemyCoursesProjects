@@ -46,15 +46,15 @@
     />
   </div>
   <div class="mb-3">
-    <label class="form-label" for="categoryId">Kategorisi</label>
+    <label class="form-label" for="categoryId-id">Kategorisi</label>
     <select
-      formControlName="category"
+      formControlName="categoryId"
       class="form-select"
-      name="category"
-      id="category-id"
+      name="categoryId"
+      id="categoryId-id"
       [class.is-invalid]="
-        createMovieForm.controls.category.errors?.required &&
-        createMovieForm.controls.category.touched
+        createMovieForm.controls.categoryId.errors?.required &&
+        createMovieForm.controls.categoryId.touched
       "
     >
       <option *ngFor="let item of categories" [value]="item.id">
