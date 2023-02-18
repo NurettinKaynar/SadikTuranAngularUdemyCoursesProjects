@@ -45,7 +45,7 @@ export class MovieService {
           return throwError(() => new Error('Unknown Error'));
       }
     }
-    return throwError(() => new Error('Unknown Error'));
+    return throwError(() => error);
   }
 
   getMovieById(movieId: number): Observable<Movie> {
