@@ -47,8 +47,7 @@ export class MovieCreateComponent implements OnInit {
     let sendMovie: Movie = this.createMovieForm.value;
     sendMovie.publishedDate = new Date();
     this.movieService.createMovie(sendMovie).subscribe((data) => {
-      this.router.navigate(['/movies', data.id]);
-      console.log(data);
+      this.router.navigate(['/movies']);
     });
   }
 

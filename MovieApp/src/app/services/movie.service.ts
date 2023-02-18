@@ -5,12 +5,13 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Movie } from 'src/models/movie.model';
 
 @Injectable()
 export class MovieService {
   url = 'http://localhost:3000/movies';
-
+  url_firebase = environment.FIREBASE_URL;
   constructor(private http: HttpClient) {}
 
   getMovies(categoryId: number): Observable<Movie[]> {
@@ -61,9 +62,12 @@ export class MovieService {
         Authorization: 'Token',
       }),
     };
-    return this.http.post<Movie>(this.url, movie, httpOptions).pipe(
-      tap((data) => console.log(data)),
-      catchError(this.handleError)
-    );
+
+    return this.http
+      .post<Movie>(this.url_firebase + '/movies.json', movie, httpOptions)
+      .pipe(
+        tap((data) => console.log(data)),
+        catchError(this.handleError)
+      );
   }
 }
