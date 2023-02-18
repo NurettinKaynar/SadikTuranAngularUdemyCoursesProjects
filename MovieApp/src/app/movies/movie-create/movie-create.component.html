@@ -1,8 +1,8 @@
-<h1>Create Movie</h1>
+<h1>Yeni Film Oluştur</h1>
 
 <form [formGroup]="createMovieForm" (ngSubmit)="createMovie()">
   <div class="mb-3">
-    <label class="form-label" for="title">Title</label>
+    <label class="form-label" for="title">Adı</label>
     <input
       formControlName="title"
       class="form-control"
@@ -17,7 +17,7 @@
     <div class="invalid-feedback">Bu Alanı Boş Geçmezsiniz</div>
   </div>
   <div class="mb-3">
-    <label class="form-label" for="description">Description</label>
+    <label class="form-label" for="description">Açıklaması</label>
     <textarea
       formControlName="description"
       class="form-control"
@@ -32,7 +32,7 @@
     <div class="invalid-feedback">Bu Alanı Boş Geçmezsiniz</div>
   </div>
   <div class="mb-3">
-    <label class="form-label" for="image-url">İmage URL</label>
+    <label class="form-label" for="image-url">Görsel Linki</label>
     <input
       formControlName="imageUrl"
       class="form-control"
@@ -46,7 +46,7 @@
     />
   </div>
   <div class="mb-3">
-    <label class="form-label" for="categoryId">Category</label>
+    <label class="form-label" for="categoryId">Kategorisi</label>
     <select
       formControlName="category"
       class="form-select"
@@ -63,20 +63,21 @@
     </select>
     <div class="invalid-feedback">Bu Alanı Boş Geçmezsiniz</div>
   </div>
-  <button
-    [disabled]="createMovieForm.invalid"
-    class="btn btn-primary"
-    type="submit"
-  >
-    Create
-  </button>
-
-  <button
-    [disabled]="createMovieForm.invalid"
-    class="btn btn-danger"
-    type="button"
-    (click)="clearForms()"
-  >
-    Clear
-  </button>
+  <div class="d-flex gap-3">
+    <button
+      [disabled]="createMovieForm.invalid"
+      class="btn btn-primary"
+      type="submit"
+    >
+      Oluştur
+    </button>
+    <button
+      [disabled]="createMovieForm.invalid"
+      class="btn btn-danger"
+      type="button"
+      (click)="clearForms()"
+    >
+      Temizle
+    </button>
+  </div>
 </form>

@@ -8,14 +8,13 @@ import {
 import { Router } from '@angular/router';
 import { Categories } from 'src/models/categories.model';
 import { Movie } from 'src/models/movie.model';
-import { CategoryService } from '../services/category.service';
-import { MovieService } from '../services/movie.service';
+import { CategoryService } from '../../services/category.service';
+import { MovieService } from '../../services/movie.service';
 
 @Injectable({ providedIn: 'root' })
 @Component({
   selector: 'app-movie-create',
   templateUrl: './movie-create.component.html',
-  styleUrls: ['./movie-create.component.css'],
   providers: [CategoryService, MovieService],
 })
 export class MovieCreateComponent implements OnInit {
@@ -36,6 +35,7 @@ export class MovieCreateComponent implements OnInit {
   }
   initForm() {
     this.createMovieForm = this.fb.group({
+      id: new FormControl(0, Validators.required),
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       imageUrl: new FormControl('', Validators.required),

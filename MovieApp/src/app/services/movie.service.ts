@@ -4,25 +4,34 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Movie } from 'src/models/movie.model';
+import { UrlPathUtilities } from '../utilities/url-path';
 
 @Injectable()
 export class MovieService {
-  url = 'http://localhost:3000/movies';
-  url_firebase = environment.FIREBASE_URL;
   constructor(private http: HttpClient) {}
 
   getMovies(categoryId: number): Observable<Movie[]> {
-    let newUrl = this.url;
-    if (categoryId) {
-      newUrl += '?categoryId=' + categoryId;
-    }
-    return this.http.get<Movie[]>(newUrl).pipe(
-      tap((data) => console.log(data)),
-      catchError(this.handleError)
-    );
+    return this.http
+      .get<Movie[]>(UrlPathUtilities.BASE_URL + UrlPathUtilities.MOVIES)
+      .pipe(
+        map((response) => {
+          const movies: Movie[] = [];
+          for (const key in response) {
+            if (categoryId) {
+              if (categoryId == response[key].categoryId) {
+                movies.push({ ...response[key], id: key });
+              }
+            } else {
+              movies.push({ ...response[key], id: key });
+            }
+          }
+          return movies;
+        }),
+        tap((data) => console.log(data)),
+        catchError(this.handleError)
+      );
   }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -49,11 +58,18 @@ export class MovieService {
     return throwError(() => error);
   }
 
-  getMovieById(movieId: number): Observable<Movie> {
-    return this.http.get<Movie>(this.url + '/' + movieId).pipe(
-      tap((data) => console.log(data)),
-      catchError(this.handleError)
-    );
+  getMovieById(movieId: string): Observable<Movie> {
+    return this.http
+      .get<Movie>(
+        UrlPathUtilities.BASE_URL +
+          UrlPathUtilities.GET_MOVIE_BY_ID +
+          movieId +
+          '.json'
+      )
+      .pipe(
+        tap((data) => console.log(data)),
+        catchError(this.handleError)
+      );
   }
   createMovie(movie: Movie): Observable<Movie> {
     const httpOptions = {
@@ -64,7 +80,11 @@ export class MovieService {
     };
 
     return this.http
-      .post<Movie>(this.url_firebase + '/movies.json', movie, httpOptions)
+      .post<Movie>(
+        UrlPathUtilities.BASE_URL + UrlPathUtilities.MOVIES,
+        movie,
+        httpOptions
+      )
       .pipe(
         tap((data) => console.log(data)),
         catchError(this.handleError)

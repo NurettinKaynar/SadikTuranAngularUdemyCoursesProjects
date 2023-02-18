@@ -1,36 +1,29 @@
-// import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from 'src/models/movie.model';
-// import { MovieRepository } from 'src/models/movie.repository';
+
 import { AlertifyService } from '../services/alertify.service';
 import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css'],
   providers: [MovieService],
 })
 export class MoviesComponent implements OnInit {
-  // movies = ['Film 1', 'Film 2', 'Film 3'];
   movies: Movie[] = [];
   title: string = 'Film Listesi';
-  // movieRepository: MovieRepository;
+
   filteredMovies: Movie[] = [];
-  // popularMovies: Movie[];
-  // today = new Date();
+
   filterText: string = '';
   err: any;
 
   constructor(
-    private alertify: AlertifyService, // private http: HttpClient,
+    private alertify: AlertifyService,
     private movieService: MovieService,
     private activatedRoute: ActivatedRoute
   ) {
-    // this.movieRepository = new MovieRepository();
-    // this.movies = this.movieRepository.getMovies();
-    // this.popularMovies = this.movieRepository.getPopularMovies();
     this.filteredMovies = this.movies;
   }
   onInputChange() {
@@ -43,9 +36,6 @@ export class MoviesComponent implements OnInit {
       : this.movies;
   }
   addToList($event: any, movie: Movie) {
-    // console.log('Movie Title', movie.title);
-    // console.log($event.target.classList);
-
     if ($event.target.classList.contains('btn-primary')) {
       $event.target.classList.remove('btn-primary');
       $event.target.classList.add('btn-danger');
@@ -60,12 +50,6 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.http.get<Movie[]>('http://localhost:3000/movies').subscribe({
-    //   next: (res) => {
-    //     this.movies = res;
-    //     this.filteredMovies = this.movies;
-    //   },
-    // });
     this.activatedRoute.params.subscribe((params) => {
       this.movieService.getMovies(params['categoryId']).subscribe({
         next: (res) => {
