@@ -15,7 +15,7 @@ export class MoviesComponent implements OnInit {
   title: string = 'Film Listesi';
 
   filteredMovies: Movie[] = [];
-
+  loading: boolean = false;
   filterText: string = '';
   err: any;
 
@@ -50,13 +50,16 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.activatedRoute.params.subscribe((params) => {
       this.movieService.getMovies(params['categoryId']).subscribe({
         next: (res) => {
+          this.loading = false;
           this.movies = res;
           this.filteredMovies = this.movies;
         },
         error: (error) => {
+          this.loading = false;
           this.err = error;
           console.log(error);
         },
