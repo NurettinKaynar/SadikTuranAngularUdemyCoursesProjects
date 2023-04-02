@@ -1,0 +1,73 @@
+<form [formGroup]="authForm" (ngSubmit)="onSubmitAuthForm()">
+  <div class="mb-3">
+    <label for="email">Email</label>
+    <input
+      formControlName="email"
+      type="text"
+      name="email"
+      id="email"
+      class="form-control"
+      [ngClass]="
+        authForm.get('email').hasError('required') &&
+        (authForm.get('email').touched || authForm.get('email').dirty)
+          ? 'is-invalid'
+          : !authForm.get('email').hasError('required') &&
+            (authForm.get('email').touched || authForm.get('email').dirty)
+          ? 'is-valid'
+          : ''
+      "
+    />
+    <span
+      *ngIf="
+        authForm.get('email').hasError('required') &&
+        (authForm.get('email').touched || authForm.get('email').dirty)
+      "
+      class="invalid-feedback"
+      >Bu Alanı Boş Geçemezsiniz.</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="email">Şifre</label>
+    <input
+      formControlName="password"
+      type="password"
+      name="password"
+      id="password"
+      class="form-control"
+      [ngClass]="
+        authForm.get('password').hasError('required') &&
+        (authForm.get('password').touched || authForm.get('password').dirty)
+          ? 'is-invalid'
+          : !authForm.get('password').hasError('required') &&
+            (authForm.get('password').touched || authForm.get('password').dirty)
+          ? 'is-valid'
+          : ''
+      "
+    />
+    <span
+      *ngIf="
+        authForm.get('password').hasError('required') &&
+        (authForm.get('password').touched || authForm.get('password').dirty)
+      "
+      class="invalid-feedback"
+      >Bu Alanı Boş Geçemezsiniz.</span
+    >
+  </div>
+
+  <div class="d-flex gap-2">
+    <button [disabled]="authForm.invalid" type="submit" class="btn btn-primary">
+      {{ isLoginMode ? "Giriş Yap" : "Kaydol" }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="onToggleModeHandler()"
+    >
+      {{
+        isLoginMode
+          ? "Kayıt olmak için geçiş yap"
+          : "Giriş yapmak için geçiş yap"
+      }}
+    </button>
+  </div>
+</form>

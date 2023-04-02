@@ -40,6 +40,11 @@ export class MovieService {
     } else {
       //backend
       switch (error.status) {
+        case 401:
+          console.error('Yetkisiz Erişim');
+          return throwError(
+            () => new Error('Bilgiye erişmek için lütfen giriş yapın.')
+          );
         case 404:
           console.error('Not Found');
           return throwError(() => new Error('Not Found'));

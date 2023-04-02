@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MovieCreateComponent } from './movies/movie-create/movie-create.component';
 import { CreateCategoriesComponent } from './categories/create-categories/create-categories.component';
+import { AuthComponent } from './auth/auth.component';
 
 @Injectable({ providedIn: 'root' })
 @NgModule({
@@ -33,6 +34,7 @@ import { CreateCategoriesComponent } from './categories/create-categories/create
     MovieFilterPipe,
     MovieCreateComponent,
     CreateCategoriesComponent,
+    AuthComponent,
   ],
   imports: [
     //Module
